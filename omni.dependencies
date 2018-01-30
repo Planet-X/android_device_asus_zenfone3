@@ -1,14 +1,15 @@
 [
   {
     "remote": "github",
-    "repository": "shakalaca/android_kernel_asus_ze520kl",
-    "revision": "twrp",
-    "target_path": "kernel/asus/Z017"
+    "repository": "TeamWin/android_device_qcom_common",
+    "revision": "android-8.0",
+    "target_path": "device/qcom/common"
   },
+  
   {
     "remote": "github",
-    "repository": "TeamWin/android_device_qcom_common",
-    "revision": "android-7.1",
-    "target_path": "device/qcom/common"
+    "repository": "Planet-X/android-kernel-zenfone3-stock",
+    "revision": "android-8.0",
+    "target_path": "kernel/asus/Z017"
   }
 ]
