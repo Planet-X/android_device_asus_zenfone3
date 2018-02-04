@@ -1,8 +1,6 @@
 import init.recovery.qcom_decrypt.rc
 
 on init
-    insmod /sbin/texfat.ko
-
     start copy_fingerprint
 
 on fs
