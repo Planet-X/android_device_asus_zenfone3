@@ -8,8 +8,8 @@
   
   {
     "remote": "github",
-    "repository": "Planet-X/android-kernel-zenfone3_TWRP",
-    "revision": "twrp-8.0",
+    "repository": "Planet-X/android_kernel_asus_Z017",
+    "revision": "lineage-15.1",
     "target_path": "kernel/asus/Z017"
   }
 ]
