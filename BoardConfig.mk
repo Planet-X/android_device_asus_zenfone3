@@ -31,7 +31,7 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := ze520kl-userdebug_defconfig
+TARGET_KERNEL_CONFIG := msm8953-asus_twrp_defconfig
 TARGET_PREBUILT_KERNEL := device/asus/Z017/prebuilt/kernel
 
 TARGET_LDPRELOAD := libNimsWrap.so
