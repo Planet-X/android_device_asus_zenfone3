@@ -11,14 +11,13 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a53
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT := cortex-a53
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0
@@ -32,16 +31,21 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := msm8953-asus_twrp_defconfig
-TARGET_PREBUILT_KERNEL := device/asus/Z017/prebuilt/kernel
+TARGET_KERNEL_SOURCE := kernel/asus/msm8953
 
-TARGET_LDPRELOAD := libNimsWrap.so
+BOARD_USES_QCOM_HARDWARE := true
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_zenfone3
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TARGET_HW_DISK_ENCRYPTION := true
 
 # Recovery
-RECOVERY_VARIANT := twrp
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
@@ -54,23 +58,19 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # TWRP-Specific
 TW_THEME := portrait_hdpi
-TW_NO_EXFAT_FUSE := true
-TW_INCLUDE_NTFS_3G := true
-TW_EXTRA_LANGUAGES := true
 RECOVERY_SDCARD_ON_DATA := true
-#TW_TARGET_USES_QCOM_BSP := true
-#TW_NEW_ION_HEAP := true
+TW_NEW_ION_HEAP := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_EXCLUDE_SUPERSU := true
 TW_SCREEN_BLANK_ON_BOOT := true
-TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-
+TW_EXCLUDE_TWRPAPP := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 150
 
 TARGET_RECOVERY_DEVICE_MODULES := \
+    libinit_zenfone3 \
     libbinder \
     libgui \
     libui \
@@ -83,4 +83,3 @@ TW_RECOVERY_ADDITIONAL_RELINK_FILES := \
     $(OUT)/system/bin/qseecomd
 
 TARGET_UNIFIED_DEVICE := true
-TARGET_SYSTEM_PROP := device/asus/Z017/system.prop

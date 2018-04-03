@@ -8,7 +8,6 @@ on property:ro.crypto.state=encrypted
     start sbinqseecomd
 
 service sbinqseecomd /sbin/qseecomd
-    oneshot
     disabled
     user root
     group root
