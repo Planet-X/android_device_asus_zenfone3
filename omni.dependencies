@@ -5,11 +5,10 @@
     "revision": "android-8.0",
     "target_path": "device/qcom/common"
   },
-  
   {
     "remote": "github",
-    "repository": "Planet-X/android_kernel_asus_Z017",
+    "repository": "Planet-X/android_kernel_asus_msm8953",
     "revision": "lineage-15.1",
-    "target_path": "kernel/asus/Z017"
+    "target_path": "kernel/asus/msm8953"
   }
 ]
