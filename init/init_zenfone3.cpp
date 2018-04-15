@@ -29,10 +29,14 @@
 
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
+#include <sys/stat.h>
 
 #include <android-base/logging.h>
 #include <android-base/properties.h>
 #include "property_service.h"
+
+#include <fcntl.h>
+#include <unistd.h>
 
 namespace android {
 namespace init {
@@ -48,8 +52,35 @@ void property_override(char const prop[], char const value[])
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
+static void set_serial()
+{
+    int fd, rc;
+    char buf[16];
+    int status = 1;
+    const char *path = "/factory/SSN";
+
+    fd = open(path, O_RDONLY);
+    if (fd < 0) {
+        status = -1;
+    }
+
+    if (rc = read(fd, buf, 15) < 0) {
+        status = -1;
+    } else {
+        buf[15] = '\0';
+        property_override("ro.serialno", buf);
+    }
+    close(fd);
+
+    if (status < 0) {
+        property_override("ro.serialno", "UNKNOWNSERIALNO");
+    }
+}
+
 void vendor_load_properties()
 {
+    set_serial();
+
     int project = stoi(android::base::GetProperty("ro.boot.id.prj", ""));
     property_set("ro.product.name", "WW_Phone");
     if (project == 6) {
