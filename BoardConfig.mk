@@ -6,6 +6,8 @@ TARGET_BOOTLOADER_BOARD_NAME := msm8953
 TARGET_BOARD_PLATFORM := msm8953
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
 
+TARGET_USES_64_BIT_BINDER := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -24,9 +26,10 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci
 BOARD_KERNEL_CMDLINE += earlycon=msm_hsl_uart,0x78af000 androidboot.selinux=permissive
-BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000
+BOARD_KERNEL_CMDLINE += androidboot.configfs=true
+BOARD_KERNEL_BASE        := 0x80000000
+BOARD_KERNEL_PAGESIZE    := 2048
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
@@ -52,9 +55,16 @@ TARGET_USERIMAGES_USE_F2FS := true
 # Partitions
 BOARD_SUPPRESS_SECURE_ERASE := true
 
+# Display
+TARGET_USES_ION := true
+
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # TWRP-Specific
 TW_THEME := portrait_hdpi
@@ -75,11 +85,9 @@ TARGET_RECOVERY_DEVICE_MODULES := \
     libgui \
     libui \
     qseecomd
-
+    
 TW_RECOVERY_ADDITIONAL_RELINK_FILES := \
     $(OUT)/system/lib64/libbinder.so \
     $(OUT)/system/lib64/libgui.so \
     $(OUT)/system/lib64/libui.so \
     $(OUT)/system/bin/qseecomd
-
-TARGET_UNIFIED_DEVICE := true
