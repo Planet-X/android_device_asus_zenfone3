@@ -10,6 +10,6 @@ To build:
 ```sh
 . build/envsetup.sh
 export ALLOW_MISSING_DEPENDENCIES=true
-lunch omni_Z017-userdebug
+lunch omni_zenfone3-userdebug
 mka recoveryimage
 ```
