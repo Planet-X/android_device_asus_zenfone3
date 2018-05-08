@@ -82,7 +82,7 @@ void vendor_load_properties()
     set_serial();
 
     int project = stoi(android::base::GetProperty("ro.boot.id.prj", ""));
-    property_set("ro.product.name", "WW_Phone");
+    property_override("ro.product.name", "WW_Phone");
     if (project == 6) {
         property_set("ro.build.model", "ASUS_Z017DA");
         property_set("ro.build.device", "Z017");
