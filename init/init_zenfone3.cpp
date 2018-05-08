@@ -77,22 +77,45 @@ static void set_serial()
     }
 }
 
+const char * get_variant(int project)
+{
+    int rf = stoi(android::base::GetProperty("ro.boot.id.rf", ""));
+
+    if (project == 6) {
+        switch(rf){
+            case 1: return "Z017DB"; /* Indonesian Varient */
+            case 2: return "Z017DC"; /* Latin American Varient */
+            default: return "Z017DA"; /* Default to Z017DA */
+        }
+    } else {
+        switch(rf){
+            case 0: return "Z012S";  /* Canadian varient */
+            case 1: return "Z012DB"; /* Indonesian Varient */
+            case 8: return "Z012D";  /* Global variant */
+            case 15: return "Z012DE"; /* Chinese Varient */
+            default: return "Z012DA"; /* Default to Z012DA */
+        }
+    }
+}
+
 void vendor_load_properties()
 {
     set_serial();
 
     int project = stoi(android::base::GetProperty("ro.boot.id.prj", ""));
+    const char * model = get_variant(project);
+    
+    property_set("ro.build.model", model);
+    property_set("ro.product.model", model);
     property_override("ro.product.name", "WW_Phone");
+    
     if (project == 6) {
-        property_set("ro.build.model", "ASUS_Z017DA");
         property_set("ro.build.device", "Z017");
         property_override("ro.product.device", "ASUS_Z017D_1");
-        property_set("ro.product.model", "ASUS_Z017DA");
-    } else if (project == 7) {
-        property_set("ro.build.model", "ASUS_Z012DA");
+        
+    } else {
         property_set("ro.build.device", "Z012");
         property_override("ro.product.device", "ASUS_Z012D");
-        property_set("ro.product.model", "ASUS_Z012DA");
     }
 }
 }
