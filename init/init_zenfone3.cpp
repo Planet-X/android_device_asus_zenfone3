@@ -83,17 +83,17 @@ const char * get_variant(int project)
 
     if (project == 6) {
         switch(rf){
-            case 1: return "Z017DB"; /* Indonesian Varient */
-            case 2: return "Z017DC"; /* Latin American Varient */
-            default: return "Z017DA"; /* Default to Z017DA */
+            case 1: return "ASUS_Z017DB"; /* Indonesian Varient */
+            case 2: return "ASUS_Z017DC"; /* Latin American Varient */
+            default: return "ASUS_Z017DA"; /* Default to Z017DA */
         }
     } else {
         switch(rf){
-            case 0: return "Z012S";  /* Canadian varient */
-            case 1: return "Z012DB"; /* Indonesian Varient */
-            case 8: return "Z012D";  /* Global variant */
-            case 15: return "Z012DE"; /* Chinese Varient */
-            default: return "Z012DA"; /* Default to Z012DA */
+            case 0: return "ASUS_Z012S";  /* Canadian varient */
+            case 1: return "ASUS_Z012DB"; /* Indonesian Varient */
+            case 8: return "ASUS_Z012DA";  /* JP/TW variant */
+            case 15: return "ASUS_Z012DE"; /* Chinese Varient */
+            default: return "ASUS_Z012DA"; /* Default to Z012DA */
         }
     }
 }
