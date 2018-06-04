@@ -1,3 +1,5 @@
+DEVICE_PATH := device/asus/zenfone3
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := msm8953
@@ -78,6 +80,10 @@ TW_EXCLUDE_TWRPAPP := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 150
+
+# Recovery keys
+PRODUCT_EXTRA_RECOVERY_KEYS := \
+    $(DEVICE_PATH)/keys/planet9-releasekey
 
 TARGET_RECOVERY_DEVICE_MODULES := \
     libinit_zenfone3 \
