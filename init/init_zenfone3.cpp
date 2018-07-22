@@ -83,6 +83,7 @@ const char * get_variant(int project)
 
     if (project == 6) {
         switch(rf){
+            case 0: return "ASUS_Z017D";  /* Global Varient */
             case 1: return "ASUS_Z017DB"; /* Indonesian Varient */
             case 2: return "ASUS_Z017DC"; /* Latin American Varient */
             default: return "ASUS_Z017DA"; /* Default to Z017DA */
