@@ -92,6 +92,7 @@ const char * get_variant(int project)
         switch(rf){
             case 0: return "ASUS_Z012S";  /* Canadian varient */
             case 1: return "ASUS_Z012DB"; /* Indonesian Varient */
+            case 2: return "ASUS_Z012DC"; /* Latin American variant */
             case 8: return "ASUS_Z012DA";  /* JP/TW variant */
             case 15: return "ASUS_Z012DE"; /* Chinese Varient */
             default: return "ASUS_Z012DA"; /* Default to Z012DA */
