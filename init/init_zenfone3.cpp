@@ -109,7 +109,7 @@ void vendor_load_properties()
     
     property_set("ro.build.model", model);
     property_set("ro.product.model", model);
-    property_override("ro.product.name", "WW_Phone");
+    property_override("ro.product.name", "OPEN_Phone");
     
     if (project == 6) {
         property_set("ro.build.device", "Z017");
